@@ -3,16 +3,16 @@ using Godot;
 namespace InteractionSystem;
 
 /// <summary>
-/// 交互检测组件。
-/// 挂载到玩家节点上，使用 Area2D 检测范围内的可交互对象，
-/// 显示/隐藏交互提示，处理交互输入。
+/// Interaction detection component.
+/// Attach to the player node. Uses Area2D to detect interactable objects in range,
+/// shows/hides interaction hints, and handles interaction input.
 /// </summary>
 public partial class InteractionComponent : Area2D
 {
-    // ==================== 常量 ====================
+    // ==================== Constants ====================
     private const string DEFAULT_INPUT_ACTION = "ui_accept";
 
-    // ==================== 导出变量 ====================
+    // ==================== Exported Properties ====================
     [ExportGroup("Interaction")]
     [Export] public string InputAction { get; set; } = DEFAULT_INPUT_ACTION;
 
@@ -26,22 +26,22 @@ public partial class InteractionComponent : Area2D
         }
     }
 
-    // ==================== 信号 ====================
+    // ==================== Signals ====================
     [Signal] public delegate void InteractedEventHandler(Node target);
     [Signal] public delegate void InteractableEnteredEventHandler(Node target);
     [Signal] public delegate void InteractableExitedEventHandler(Node target);
 
-    // ==================== 节点引用 ====================
+    // ==================== Node References ====================
     private CanvasLayer? _hud;
     private Label? _interactLabel;
     private CollisionShape2D? _collisionShape;
 
-    // ==================== 状态 ====================
+    // ==================== State ====================
     private Node? _currentInteractable;
     private float _detectionRadius = 100f;
 
     /// <summary>
-    /// 当前范围内的可交互对象（只读）。
+    /// The current interactable object in range (read-only).
     /// </summary>
     public Node? CurrentInteractable => _currentInteractable;
 
@@ -65,7 +65,7 @@ public partial class InteractionComponent : Area2D
         }
     }
 
-    // ==================== 检测回调 ====================
+    // ==================== Detection Callbacks ====================
 
     private void OnAreaEntered(Area2D area)
     {
@@ -86,10 +86,10 @@ public partial class InteractionComponent : Area2D
         EmitSignal(SignalName.InteractableExited, area);
     }
 
-    // ==================== 交互操作 ====================
+    // ==================== Interaction ====================
 
     /// <summary>
-    /// 触发当前交互对象的交互。
+    /// Trigger interaction with the current interactable object.
     /// </summary>
     public void InteractWithCurrent()
     {
@@ -101,7 +101,7 @@ public partial class InteractionComponent : Area2D
     }
 
     /// <summary>
-    /// 结束当前交互。
+    /// End the current interaction.
     /// </summary>
     public void EndCurrentInteraction()
     {
@@ -111,7 +111,7 @@ public partial class InteractionComponent : Area2D
         }
     }
 
-    // ==================== 内部方法 ====================
+    // ==================== Internal ====================
 
     private void ShowHint(bool show)
     {

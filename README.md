@@ -1,52 +1,57 @@
 # Godot Interaction System
 
-一个通用的 Godot 4 交互检测插件（C#）。
+A reusable interaction detection plugin for Godot 4 (C#).
 
-## 功能
+## Features
 
-- Area2D 范围检测可交互对象
-- 自动显示/隐藏交互提示
-- 可配置的输入动作和检测半径
-- 信号通知（进入、离开、交互触发）
-- `IInteractable` 接口，任何节点实现即可被交互
+- Area2D-based proximity detection for interactable objects
+- Auto show/hide interaction hints with customizable text
+- Configurable input action and detection radius (exported properties)
+- Signals: Interacted, InteractableEntered, InteractableExited
+- `IInteractable` interface — implement on any Area2D node
 
-## 安装
+## Installation
 
-将 `addons/interaction_system/` 复制到你的 Godot 项目中，然后在 项目设置 → 插件 中启用。
+Copy `addons/interaction_system/` into your Godot project, then enable it in Project Settings → Plugins.
 
-## 使用
+## Usage
 
-1. 将 `InteractionComponent.tscn` 作为子场景添加到玩家节点
-2. 让 NPC/物体实现 `IInteractable` 接口：
+1. Add `InteractionComponent.tscn` as a child scene to your player node
+2. Implement `IInteractable` on your NPC/object:
 
 ```csharp
 using InteractionSystem;
 
 public partial class MyNPC : Area2D, IInteractable
 {
-	public string InteractionText => "[空格] 对话";
+    public string InteractionText => "Press Space to talk";
 
-	public void OnInteract()
-	{
-		GD.Print("开始对话");
-	}
+    public void OnInteract()
+    {
+        GD.Print("Start conversation");
+    }
 
-	public void OnInteractionEnd()
-	{
-		GD.Print("结束对话");
-	}
+    public void OnInteractionEnd()
+    {
+        GD.Print("End conversation");
+    }
 }
 ```
 
-3. 在编辑器中调整 `DetectionRadius` 和 `InputAction`
+3. Adjust `DetectionRadius` and `InputAction` in the editor inspector
 
-## 信号
+## Signals
 
-| 信号 | 说明 |
-|------|------|
-| `Interacted(Node target)` | 交互触发时 |
-| `InteractableEntered(Node target)` | 可交互对象进入范围 |
-| `InteractableExited(Node target)` | 可交互对象离开范围 |
+| Signal | Description |
+|--------|-------------|
+| `Interacted(Node target)` | Emitted when interaction is triggered |
+| `InteractableEntered(Node target)` | Emitted when an interactable enters range |
+| `InteractableExited(Node target)` | Emitted when an interactable exits range |
+
+## Requirements
+
+- Godot 4.6+ (Mono/C#)
+- .NET 8 SDK
 
 ## License
 
