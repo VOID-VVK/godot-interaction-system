@@ -24,7 +24,7 @@ using InteractionSystem;
 
 public partial class MyNPC : Area2D, IInteractable
 {
-	public string InteractionText => "按 E 对话";
+	public string InteractionText => "[空格] 对话";
 
 	public void OnInteract()
 	{
