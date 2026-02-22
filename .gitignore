@@ -1,9 +1,13 @@
-# .import/
+# Godot
+.import/
 .godot/
 .mono/
 *.uid
 
+# IDE
+.idea/
+.vscode/
+
 # OS
 .DS_Store
 Thumbs.db
-.idea/
