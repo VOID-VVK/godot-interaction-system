@@ -24,17 +24,17 @@ using InteractionSystem;
 
 public partial class MyNPC : Area2D, IInteractable
 {
-    public string InteractionText => "按 E 对话";
+	public string InteractionText => "按 E 对话";
 
-    public void OnInteract()
-    {
-        GD.Print("开始对话");
-    }
+	public void OnInteract()
+	{
+		GD.Print("开始对话");
+	}
 
-    public void OnInteractionEnd()
-    {
-        GD.Print("结束对话");
-    }
+	public void OnInteractionEnd()
+	{
+		GD.Print("结束对话");
+	}
 }
 ```
 
