@@ -24,7 +24,7 @@ using InteractionSystem;
 
 public partial class MyNPC : Area2D, IInteractable
 {
-    public string InteractionText => "Press Space to talk";
+    public string InteractionText => "[Space] Talk";
 
     public void OnInteract()
     {
