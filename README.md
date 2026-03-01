@@ -1,4 +1,4 @@
-# Godot Interaction System
+# InteractionSystem-CS
 
 A reusable interaction detection plugin for Godot 4 (C#).
 
